@@ -8,7 +8,7 @@ import { Bounce, ToastContainer } from 'react-toastify'
 
 const App = () => {
 
-  const url = "http://localhost:5000"
+  const url = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://cravehub-backend.onrender.com"
 
   return (
     <div>
@@ -32,9 +32,9 @@ const App = () => {
       >
         <Sidebar />
         <Routes>
-            <Route path="/" element={<AddFood url={url} />} />
-            <Route path="/list-food" element={<ListFood url={url} />} />
-            <Route path="/order-food" element={<OrderFood url={url} />} />
+          <Route path="/" element={<AddFood url={url} />} />
+          <Route path="/list-food" element={<ListFood url={url} />} />
+          <Route path="/order-food" element={<OrderFood url={url} />} />
         </Routes>
       </div>
     </div>

@@ -5,9 +5,9 @@ const StoreContext = createContext(null)
 
 export const StoreProvider = (props) => {
 
-    const [cartItems, setCartItems] = useState({})
-    const url = "http://localhost:5000"
+    const url = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://cravehub-backend.onrender.com"
 
+    const [cartItems, setCartItems] = useState({})
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
 
