@@ -9,12 +9,14 @@ import StoreContext from "../context/StoreContext"
 const Navbar = ({ showLogin, setShowLogin }) => {
 
     const [menu, setMenu] = useState("home")
-    const { getTotalCartAmount, token, setToken } = useContext(StoreContext)
+    const { getTotalCartAmount, token, setToken, setCartItems } = useContext(StoreContext)
     const [viewAccount, setViewAccount] = useState(false)
     const navigate = useNavigate()
 
     const logout = () => {
         localStorage.removeItem("token")
+        getTotalCartAmount()
+        setCartItems([])
         setToken("")
         navigate('/')
     }
@@ -23,8 +25,6 @@ const Navbar = ({ showLogin, setShowLogin }) => {
         navigate('/myorders')
         setViewAccount(false)
     }
-
-    // useEffect(() => { viewAccount }, [])
 
     const active = "pb-[2px] border-b-[2px] border-blue-950"
 
@@ -69,7 +69,7 @@ const Navbar = ({ showLogin, setShowLogin }) => {
                         <BsBasketFill className="fill-blue-950 text-[24px]" />
                     </Link>
                     <div
-                        className={getTotalCartAmount() ? `absolute min-w-[10px] min-h-[10px]
+                        className={getTotalCartAmount() !== 0 ? `absolute min-w-[10px] min-h-[10px]
                         bg-red-500 rounded-[5px] -top-[6px] -right-[6px]` : ""}
                     ></div>
                 </div>

@@ -65,7 +65,7 @@ export const StoreProvider = (props) => {
             }
         }
         loadData()
-    }, [])
+    }, [loadCartData])
 
     const contextValue = {
         food_list,
