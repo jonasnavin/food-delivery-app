@@ -6,10 +6,10 @@ import { IoIosLogOut } from "react-icons/io"
 import { BsBasketFill } from "react-icons/bs"
 import StoreContext from "../context/StoreContext"
 
-const Navbar = ({ showLogin, setShowLogin }) => {
+const Navbar = () => {
 
     const [menu, setMenu] = useState("home")
-    const { getTotalCartAmount, token, setToken, setCartItems } = useContext(StoreContext)
+    const { getTotalCartAmount, token, setToken, setCartItems, showLogin, setShowLogin } = useContext(StoreContext)
     const [viewAccount, setViewAccount] = useState(false)
     const navigate = useNavigate()
 
@@ -26,10 +26,15 @@ const Navbar = ({ showLogin, setShowLogin }) => {
         setViewAccount(false)
     }
 
+    useEffect(() => {
+
+    }, [viewAccount])
+
     const active = "pb-[2px] border-b-[2px] border-blue-950"
 
     return (
-        <div className='py-[20px] flex justify-between items-center select-none'>
+        <div className='py-[20px] flex justify-between
+            items-center select-none border-b border-gray-400'>
             <Link to={'/'}>
                 <h1
                     className={`text-[48px] max-md:text-[40px] text-red-500
@@ -89,7 +94,7 @@ const Navbar = ({ showLogin, setShowLogin }) => {
                 ) : (
                     <div
                         tabIndex={0}
-                        onClick={() => setViewAccount(true)}
+                        onClick={() => setViewAccount(prev => !prev)}
                         onBlur={() => setViewAccount(false)}
                         className={`relative`}
                     >

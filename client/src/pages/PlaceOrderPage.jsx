@@ -55,12 +55,12 @@ const PlaceOrderPage = () => {
   }
 
   const inputStyles = `mb-[15px] w-[100%] p-[10px] border-[1px]border-gray-300 rounded-[4px] outline-red-500`
-  const inputDivStyles = `flex gap-[10px]`
+  const inputDivStyles = `flex gap-[10px] max-sm:flex-col`
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={`flex items-start justify-between gap-[50px] mt-[100px]`}
+      className={`flex items-start max-md:flex-col max-md:items-center justify-between gap-[50px] mt-[100px]`}
     >
       <div
         className={`w-[100%] max-w-[max(30%,_500px)]`}

@@ -3,9 +3,9 @@ import { GiKnifeFork } from "react-icons/gi"
 import axios from 'axios'
 import StoreContext from '../context/StoreContext'
 
-const LoginPopUp = ({ setShowLogin }) => {
+const LoginPopUp = () => {
 
-    const { url, setToken } = useContext(StoreContext)
+    const { url, setToken, loadCartData, setShowLogin } = useContext(StoreContext)
 
     const [status, setStatus] = useState('Login')
     const [data, setData] = useState({
@@ -34,6 +34,7 @@ const LoginPopUp = ({ setShowLogin }) => {
                 setToken(response.data.token)
                 localStorage.setItem("token", response.data.token)
                 setShowLogin(false)
+                await loadCartData(response.data.token)
             } else {
                 alert(response.data.message)
             }
@@ -89,13 +90,6 @@ const LoginPopUp = ({ setShowLogin }) => {
                         required
                     />
                 </div>
-                <button
-                    type='submit'
-                    className={`p-[10px] rounded-[4px] text-white
-                        bg-red-500 text-[15px] cursor-pointer`}
-                >
-                    {status === "Sign Up" ? "Create Account" : "Login"}
-                </button>
                 <div className={`flex items-start gap-[8px]`}>
                     <input
                         className={`mt-[5px] `}
@@ -107,6 +101,13 @@ const LoginPopUp = ({ setShowLogin }) => {
                         By continuing, I agree to the terms of use & privacy policy.
                     </label>
                 </div>
+                <button
+                    type='submit'
+                    className={`p-[10px] rounded-[4px] text-white
+                        bg-red-500 text-[15px] cursor-pointer`}
+                >
+                    {status === "Sign Up" ? "Create Account" : "Login"}
+                </button>
                 {status === "Sign Up" ? (
                     <p>
                         Already have an account? &nbsp;

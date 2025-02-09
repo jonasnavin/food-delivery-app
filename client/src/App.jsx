@@ -4,20 +4,21 @@ import CartPage from "./pages/CartPage"
 import PlaceOrderPage from "./pages/PlaceOrderPage"
 import HomePage from "./pages/HomePage"
 import Footer from "./components/Footer"
-import { useState } from "react"
 import LoginPopUp from "./components/LoginPopUp"
 import VerifyPayment from "./pages/VerifyPayment"
 import MyOrdersPage from "./pages/MyOrdersPage"
+import { useContext } from "react"
+import StoreContext from "./context/StoreContext"
 
 const App = () => {
 
-  const [showLogin, setShowLogin] = useState(false)
+  const { showLogin } = useContext(StoreContext)
 
   return (
     <>
-      {showLogin ? <LoginPopUp setShowLogin={setShowLogin} /> : null}
+      {showLogin ? <LoginPopUp /> : null}
       <div className="w-[80%] m-auto max-lg:w-[85%]">
-        <Navbar showLogin={showLogin} setShowLogin={setShowLogin} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />

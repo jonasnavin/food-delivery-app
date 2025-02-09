@@ -53,17 +53,20 @@ const MyOrdersPage = () => {
                             <img
                                 className={`w-[50px]`}
                                 src={assets.parcel_icon} alt="" />
-                            <p>{order.items.map((item, index) => {
-                                if (index === order.items.length - 1) {
-                                    return item.name + " x " + item.quantity
-                                }
-                                else {
-                                    return item.name + " x " + item.quantity + ", "
-                                }
-                            })}</p>
-                            <p>&#8377; {order.amount}.00</p>
+                            <p className="max-md:col-span-2">
+                                {order.items.map((item, index) => {
+                                    if (index === order.items.length - 1) {
+                                        return item.name + " x " + item.quantity
+                                    }
+                                    else {
+                                        return item.name + " x " + item.quantity + ", "
+                                    }
+                                })}
+                            </p>
+                            {/* <div></div> */}
+                            <p>&#8377; {order.amount}</p>
                             <p>Items: {order.items.length}</p>
-                            <p>
+                            <p className="max-md:col-span-3">
                                 <span
                                     className={
                                         order.status === "Food Processing" ? "text-red-600"
@@ -76,7 +79,7 @@ const MyOrdersPage = () => {
                             <button
                                 onClick={fetchOrders}
                                 className={`py-[12px] rounded-[4px] bg-red-100 cursor-pointer
-                                text-gray-900 max-md:text-[10px]`}
+                                text-gray-900 max-md:text-[10px] max-md:col-span-3`}
                             >Track Order</button>
                         </div>
                     )

@@ -26,7 +26,7 @@ const ExploreMenu = ({ category, setCategory }) => {
                         <div key={index}
                             onClick={() => setCategory(prev => prev === item.menu_name ? "all" : item.menu_name)}
                             className={`w-[7.5vw] min-w-[80px] cursor-pointer
-                            rounded-[50%] transition duration-200`}
+                            rounded-[50%] transition duration-200 mb-[20px]`}
                         >
                             <img
                                 className={category === item.menu_name ?

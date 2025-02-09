@@ -11,6 +11,8 @@ export const StoreProvider = (props) => {
     const [token, setToken] = useState("")
     const [food_list, setFoodList] = useState([])
 
+    const [showLogin, setShowLogin] = useState(false)
+
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems(prev => ({ ...prev, [itemId]: 1 }))
@@ -65,16 +67,19 @@ export const StoreProvider = (props) => {
             }
         }
         loadData()
-    }, [loadCartData])
+        console.log("Hello World")
+    }, [])
 
     const contextValue = {
         food_list,
         cartItems,
         setCartItems,
+        loadCartData,
         addToCart,
         removeFromCart,
         getTotalCartAmount,
-        url, token, setToken
+        url, token, setToken,
+        showLogin, setShowLogin
     }
     return (
         <StoreContext.Provider value={contextValue}>
